@@ -9,12 +9,17 @@ import Foundation
 import RxSwift
 
 class WeatherRepositoryImpl: WeatherRepository {
+        
+    private var appServiceClient: AppServiceClient
     
-    private final let appServiceClient = AppServiceClient()
+    init(appServiceClient: AppServiceClient) {
+        self.appServiceClient = appServiceClient
+    }
     
     func getWeather(from coordinates: [Double]) -> Observable<WeatherEntity> {
         return appServiceClient.getWeather(from: coordinates).map{ response in
             return response.mapToEntity()
         }
     }
+    
 }

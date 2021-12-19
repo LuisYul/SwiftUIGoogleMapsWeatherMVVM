@@ -10,7 +10,7 @@ import GoogleMaps
 
 struct MapContentView: View {
     
-    @ObservedObject private var viewModel = WeatherViewModel()
+    @ObservedObject var viewModel: WeatherViewModel
     @State static var cities = City.samples
 
     @State var markers: [CustomMarker] = cities.map {
@@ -146,8 +146,4 @@ struct CitiesList: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapContentView()
-    }
-}
+

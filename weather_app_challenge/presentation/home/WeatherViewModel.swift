@@ -8,9 +8,14 @@
 import Foundation
 import RxSwift
 
-final class WeatherViewModel: ObservableObject{
+final class WeatherViewModel: ObservableObject {
+        
+    private var getWeatherUseCase: GetWeatherUseCase
     
-    private final let getWeatherUseCase = GetWeatherUseCase()
+    init(getWeatherUseCase: GetWeatherUseCase) {
+        self.getWeatherUseCase = getWeatherUseCase
+    }
+    
     @Published var weatherEntity = WeatherEntity()
     var showModal : Bool = false
     
@@ -21,10 +26,10 @@ final class WeatherViewModel: ObservableObject{
             .subscribe(onNext: {
                 self.weatherEntity = $0
                 self.showModal = true
-                print("data vm", $0)
             }, onError: {
                 print($0.localizedDescription)
             }
         ).disposed(by: disposeBag)
     }
+    
 }

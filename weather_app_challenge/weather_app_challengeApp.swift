@@ -11,11 +11,14 @@ import GooglePlaces
 
 @main
 struct weather_app_challengeApp: App {
+    
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    let mainContainer = MainContainer.sharedContainer.container
     
     var body: some Scene {
         WindowGroup {
-            MapContentView()
+            MapContentView(viewModel: mainContainer.resolve(WeatherViewModel.self)!)
         }
     }
+    
 }
